@@ -3,18 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Data</title>
+    <title>Sample Application</title>
+    <!-- Include Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: #ffffff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+            padding: 30px;
+            margin-top: 50px; /* Space from top */
+        }
+
+        h1, h2 {
+            color: #333333; /* Dark grey headings */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #666666; /* Light grey labels */
+        }
+
+        input[type="text"] {
+            border: 1px solid #cccccc; /* Light grey border */
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff; /* Blue submit button */
+            border: none;
+            border-radius: 5px;
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
 </head>
 <body>
-    <h2>Insert Data into Cloudant Database</h2>
-    <form action="/insert" method="post">
-        <label for="database">Database Name:</label>
-        <input type="text" id="database" name="database" required><br><br>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h1>Sample Application</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Form</h2>
+            </div>
+            <div class="col-md-6">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <input type="text" id="pincode" name="pincode" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#form').submit(function(e){
+                e.preventDefault();
+                var data = $(this).serialize();
+                $.ajax({
+                    url: 'http://localhost:3000/insert-document',
+                    type: 'POST',
+                    data: data,
+                    success: function(response){
+                        console.log(response);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
