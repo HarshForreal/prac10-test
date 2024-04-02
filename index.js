@@ -9,7 +9,8 @@ if (process.env.PORT) {
   PORT = 8000;
 }
 
-var url = "https://<your-cloudant-url>";
+var url =
+  "https://apikey-v2-1ccx9t83a8laojqvhrxps3q6ju1np7km1jvq38d2vvjz:ca8a4470599fa35c970f9b3b9a7d7760@2da779cb-344e-49a0-8bb8-d3f15f6e1d2a-bluemix.cloudantnosqldb.appdomain.cloud";
 var app = express();
 const bodyParser = require("body-parser");
 
